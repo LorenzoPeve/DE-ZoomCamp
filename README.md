@@ -26,6 +26,12 @@ python .\01-docker-terraform\ingest_data.py --user root --password root --db ny_
   - `SELECT COUNT(*) FROM ny_taxi`
     - There should be `1,369,765` records
 
+### Dockerize ingestion script
+- Create image `docker build -t load_taxi_data:v001 .`
+- Start container (will fail because of missing parameters)
+  - `docker run -it --name taxi-ingestion load_taxi_data:v001`
+- Passing parameters `docker run -it --name taxi-ingestion --network de-zoomcamp-stack_default load_taxi_data:v001 --user root --password root --db ny_taxi --table_name ny_taxi --host local_pgdb --port 5432 --url 01-docker-terraform/yellow_tripdata_2021-01.csv.gz`
+  - Pay attention to the `--network` argument as we must allow communication between containers
 
 ### Tearing down development stack
 - `docker compose -p de-zoomcamp-stack down`
