@@ -1,4 +1,4 @@
-gcp_credentials.json
+service-account-file.json
 .terraform*
 
 # Byte-compiled / optimized / DLL files
