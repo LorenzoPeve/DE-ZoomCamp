@@ -1,5 +1,6 @@
 service-account-file.json
-
+mage_data/
+magic-zoomcamp/
 # Local .terraform directories
 **/.terraform/*
 
