@@ -20,7 +20,10 @@
 
 ##### Dockerize ingestion script
 - Create image `docker build -t load_taxi_data:v001 .`
-- Start container
+- Start container by running the command below
+- **Note:** This works because the container is in the same network as the Postgres container.
+  The default network name is `de-zoomcamp-stack_default`.
+
 ```
 docker run -it
   --name taxi-ingestion
@@ -29,7 +32,7 @@ docker run -it
   --user root
   --password root
   --db ny_taxi
-  --table_nameny_taxi
+  --table_name ny_taxi
   --host local_pgdb
   --port 5432
   --url 01-docker-terraform/yellow_tripdata_2021-01.csv.gz
@@ -88,4 +91,21 @@ POSTGRES_PORT=5432
   - `docker compose build`
 - Finally, start the Docker container
   - `docker compose up`
-- Navigate to `http://localhost:6789` 
+- Navigate to `http://localhost:6789`
+
+### Homework
+
+- Q1. **Data Loading**. Once the dataset is loaded, what's the shape of the data?
+  - 266,855 rows x 20 columns
+
+- Q2. **Data Transformation**. Upon filtering the dataset where the passenger count is greater than 0 and the trip distance is greater than zero, how many rows are left?
+  - 139,370 rows
+
+- Q3. **Data Transformation**. Which of the following creates a new column lpep_pickup_date by converting lpep_pickup_datetime to a date?
+  - `data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt.date`
+
+- Q4. **Data Transformation**. What are the existing values of VendorID in the dataset?
+  - `[1, 2]`
+
+- Q5. **Data Transformation**. How many columns need to be renamed to snake case?
+  - 3
