@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: ny_taxi
+    database: ny_taxi
+    schema: public
+    tables:
+      - name: ny_taxi
+        description: Records of taxi trips in NYC
